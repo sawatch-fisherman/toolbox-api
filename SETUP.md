@@ -109,3 +109,39 @@ appコンテナ内で、ログファイルの権限を変更する
 `chmod -R 777 storage`  
 
 再度、http://localhost:8088/  にアクセスするとLaravelのトップ画面が表示される
+
+## .gitignoreの修正
+app(Laravel)フォルダ配下の無視するように書き換える
+
+```
+app/vendor/
+app/node_modules/
+app/npm-debug.log
+app/yarn-error.log
+
+# Laravel 4 specific
+app/bootstrap/compiled.php
+app/app/storage/
+
+# Laravel 5 & Lumen specific
+app/public/storage
+app/app/public/hot
+
+# Laravel 5 & Lumen specific with changed public path
+app/public_html/storage
+app/public_html/hot
+
+app/storage/*.key
+app/.env
+app/Homestead.yaml
+app/Homestead.json
+app//.vagrant
+app/.phpunit.result.cache
+
+app//public/build
+app//storage/pail
+app/.env.backup
+app/.env.production
+app/.phpactor.json
+app/auth.json
+```
