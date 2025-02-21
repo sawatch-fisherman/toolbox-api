@@ -1,30 +1,65 @@
+# Laravelのディレクトリが `app/` 配下にあるため、すべての設定を `app/` 内に適用する
+
+# 依存関係（Composer）
 app/vendor/
+app/composer.lock
+
+# Node.js 依存関係
 app/node_modules/
-app/npm-debug.log
-app/yarn-error.log
+app/pnpm-lock.yaml
+app/yarn.lock
+app/package-lock.json
 
-# Laravel 4 specific
-app/bootstrap/compiled.php
-app/app/storage/
-
-# Laravel 5 & Lumen specific
-app/public/storage
-app/app/public/hot
-
-# Laravel 5 & Lumen specific with changed public path
-app/public_html/storage
-app/public_html/hot
-
-app/storage/*.key
+# 環境変数ファイル（個人・サーバーごとに異なるためGit管理しない）
 app/.env
-app/Homestead.yaml
-app/Homestead.json
-app//.vagrant
-app/.phpunit.result.cache
+app/.env.*
+!app/.env.example
 
-app//public/build
-app//storage/pail
-app/.env.backup
-app/.env.production
-app/.phpactor.json
-app/auth.json
+# キャッシュ・ログ・セッションファイル
+app/storage/
+app/storage/logs/
+app/storage/framework/
+app/storage/framework/cache/
+app/storage/framework/sessions/
+app/storage/framework/views/
+app/storage/app/public/
+
+# キャッシュファイル（artisan optimize）
+app/bootstrap/cache/
+
+# IDE（開発環境）関連ファイル
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Laravel のテスト・デバッグ関連
+app/phpunit.xml
+app/phpunit.xml.dist
+app/phpunit.result.cache
+
+# 静的解析・コード補完ツールの設定
+app/.phpunit.result.cache
+app/.phpstorm.meta.php
+app/._phpstorm.meta.php
+
+# デバッグツール
+app/.php_cs.cache
+app/.php_cs.dist
+
+# バックアップファイル（エディタの一時ファイル）
+*.swp
+*.swo
+*.bak
+*.tmp
+*.orig
+*.log
+
+# OS特有の不要ファイル
+.DS_Store
+Thumbs.db
+
+# Docker関連（Laravel Sailを使用する場合）
+app/docker-compose.override.yml
+app/docker-compose.yml
+app/.sail/
