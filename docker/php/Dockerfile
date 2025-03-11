@@ -13,6 +13,12 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     && docker-php-ext-install pdo_mysql gd xml
 
+# Xdebugのインストール
+RUN pecl install xdebug
+
+# Xdebugの設定をコンテナ内にコピー
+COPY ./xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+
 # Composerのインストール
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 

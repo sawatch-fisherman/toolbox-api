@@ -7,6 +7,7 @@ docker, Laravelコマンドのチートシート
 | コンテナのディレクトリへ移動 | `cd docker` |
 | コンテナ起動 | `docker compose up -d` |
 | コンテナ停止 | `docker compose stop` |
+| コンテナ(Laravel)に入る | `docker exec -it the21st_app bash` |
 
 # Laravel
 | 項目 | コマンド |

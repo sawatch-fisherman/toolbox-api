@@ -12,6 +12,8 @@ services:
       - db
     networks:
       - laravel_network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"  # WSL2でホストマシンに接続するための設定
 
   web:
     image: nginx:latest
