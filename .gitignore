@@ -63,3 +63,8 @@ Thumbs.db
 app/docker-compose.override.yml
 app/docker-compose.yml
 app/.sail/
+
+# .vscode フォルダ全体を無視する（もし設定されていたら）
+.vscode/
+# ただし、launch.json だけはGitに含める
+!.vscode/launch.json
