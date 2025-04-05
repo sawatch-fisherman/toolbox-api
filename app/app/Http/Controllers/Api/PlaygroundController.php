@@ -7,12 +7,28 @@ use App\Http\Responses\TotalResponse;
 use Illuminate\Http\JsonResponse;
 
 /**
- * 自由な実験的なコードを書くためのコントローラ
+ * @OA\Info(
+ *     title="Playground API",
+ *     version="1.0.0",
+ *     description="自由な実験的なコードを書くためのコントローラ"
+ * )
  */
 class PlaygroundController extends Controller
 {
     /**
-     * サンプルAPI
+     * @OA\Get(
+     *     path="/api/playground/sample",
+     *     summary="サンプルAPI",
+     *     description="これはお試し用のサンプルAPIです。",
+     *     tags={"Playground"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="成功時のレスポンス",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="This is a sample API response.")
+     *         )
+     *     )
+     * )
      */
     public function sample(): JsonResponse
     {
