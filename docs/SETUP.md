@@ -35,7 +35,7 @@ dockerとlaravelのフォルダは分離する
 
 ### Docker をビルド・起動
 cd docker  
-docker-compose up -d --build
+`docker-compose up -d --build`  
 
 ##  Laravel インストール
 Docker 内の app コンテナに入って Laravel 11 をインストール
@@ -57,6 +57,13 @@ Laravel Framework 11.43.2
 PHP 8.2.27 (cli) (built: Feb  4 2025 04:26:00) (NTS)  
 Copyright (c) The PHP Group  
 Zend Engine v4.2.27, Copyright (c) Zend Technologies
+
+### .envのコピーとAPP_KEYの生成
+
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
 ### .env の設定を変更
 WSL環境だと権限の関係で保存できないので、パーミッションを変更
@@ -109,6 +116,25 @@ appコンテナ内で、ログファイルの権限を変更する
 `chmod -R 777 storage`  
 
 再度、http://localhost:8088/  にアクセスするとLaravelのトップ画面が表示される
+
+### Laravel 権限設定（重要）
+必要なディレクトリを作成
+`mkdir -p storage/framework/{cache,sessions,views}`  
+`mkdir -p bootstrap/cache`  
+
+Laravel が書き込めるようにパーミッションを設定
+`chmod -R 775 storage bootstrap/cache`  
+`chown -R www-data:www-data storage bootstrap/cache`    # 環境に応じて変更（例：`www-data` など）
+
+WSL 環境でさらに権限が必要な場合
+`chmod -R 777 storage`  
+
+### キャッシュのクリア（必要に応じて）
+`php artisan config:clear`  
+`php artisan route:clear`  
+`php artisan view:clear`  
+`php artisan cache:clear`  
+
 
 ## .gitignoreの修正
 app(Laravel)フォルダ配下の無視するように書き換える

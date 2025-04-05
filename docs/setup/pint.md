@@ -1,5 +1,5 @@
 # このファイルについて
-LaravelにLaravel Pintを導入する手順・設置絵について記述する  
+LaravelにLaravel Pintを導入する手順・設置について記述する  
 Pint（ピント） は、Laravel に公式に推奨されている コードフォーマッター  
 PHP-CS-Fixer をベースにしており、Laravel のコーディング規約に沿った整形が可能  
 

@@ -1,5 +1,5 @@
 # このファイルについて
-LaravelにLarastan（PHPStan）を導入する手順・設置絵について記述する
+LaravelにLarastan（PHPStan）を導入する手順・設置について記述する
 
 
 # 手順
