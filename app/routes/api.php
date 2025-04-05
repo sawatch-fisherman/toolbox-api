@@ -4,8 +4,8 @@ use App\Http\Controllers\Api\PlaygroundController;
 use Illuminate\Support\Facades\Route;
 
 // ルート定義
-Route::get('/hello', function () {
-    return response()->json(['message' => 'Hello API!']);
+Route::prefix('playground')->controller(PlaygroundController::class)->group(function () {
+    Route::get('/sample', 'sample');
+    Route::get('/buggy-continue-level-example', 'buggyContinueLevelExample');
+    Route::get('/correct-continue-level-example', 'correctContinueLevelExample');
 });
-
-Route::get('/playground/sample', [PlaygroundController::class, 'sample']);
