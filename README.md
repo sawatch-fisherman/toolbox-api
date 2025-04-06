@@ -46,6 +46,7 @@ The 21st Century は、Laravelを使用して構築されたWebアプリケー�
 <!-- - ユーザー登録画面: http://localhost/register -->
 <!-- - ログイン画面: http://localhost/login -->
 <!-- - APIエンドポイント一覧は `docs/api.md` を参照 -->
+OpenAIドキュメント:http://localhost:8088/api/documentation  
 
 ## 開発ルール
 - ブランチ運用ルール
@@ -53,6 +54,9 @@ The 21st Century は、Laravelを使用して構築されたWebアプリケー�
   - `develop`: 開発用
   - `feature/xxx`: 新機能開発用
 - コードフォーマット
+pint を使用（`vendor/bin/pint`）
+larastan を使用（`vendor/bin/phpstan analyse --memory-limit=1G`）
+
   <!-- ↓未実装 -->
   <!-- - PHP-CS-Fixer を使用（`composer run fix`） -->
 - コミットメッセージのルール
