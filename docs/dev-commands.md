@@ -24,3 +24,5 @@ docker, Laravelコマンドのチートシート
 |:---:|:---:|
 | コード解析 | `vendor/bin/phpstan analyse --memory-limit=1G` |
 | コード整形 | `vendor/bin/pint` |
+| テスト実行 | `php artisan test` |
+| テスト実行 | `./vendor/bin/phpunit tests/Feature/PlaygroundApiTest.php` |
