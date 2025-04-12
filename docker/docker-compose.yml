@@ -3,7 +3,7 @@ services:
     build:
       context: ./php
       dockerfile: Dockerfile
-    container_name: the21st_app
+    container_name: toolbox_app
     restart: unless-stopped
     working_dir: /var/www
     volumes:
@@ -17,10 +17,10 @@ services:
 
   web:
     image: nginx:latest
-    container_name: the21st_nginx
+    container_name: toolbox_nginx
     restart: unless-stopped
     ports:
-      - "8088:80"   # 他環境と重複を避けるため変更している
+      - "8089:80"   # 他環境と重複を避けるため変更している
     volumes:
       - ../app:/var/www
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
@@ -31,7 +31,7 @@ services:
 
   db:
     image: mysql:8
-    container_name: the21st_db
+    container_name: toolbox_db
     restart: unless-stopped
     environment:
       MYSQL_DATABASE: laravel
@@ -39,7 +39,7 @@ services:
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: rootpassword
     ports:
-      - "3306:3306"   # 他環境と重複を避けるため変更している
+      - "3307:3306"   # 他環境と重複を避けるため変更している
     volumes:
       - db_data:/var/lib/mysql
     networks:

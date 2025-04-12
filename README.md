@@ -1,45 +1,26 @@
 # プロジェクト名
-The 21st Century
+toolbox api
 
 ## 概要
-The 21st Century は、Laravelを使用して構築されたWebアプリケーションです。
-本プロジェクトでは、PHPの学習を目的としています。
-学習した内容のサンプルコードを記述しています。
+toolbox api は、Laravelを使用して構築されたWebアプリケーションです。
+本プロジェクトでは、API作成を目的としています。
+作成したAPIのコードを記述しています。
 
 ## 動作環境
-<!-- ↓未実装 -->
-<!-- - PHP 8.2
-- Laravel 11
-- MySQL 8.0
-- Docker + Laravel Sail -->
+- PHP PHP 8.2.28
+- Laravel Framework 11.43.2
+- MySQL 8.4.4
+- Docker
+- ベース：https://github.com/sawatch-fisherman/the-21st-century.git　を元に作成
 
 ## インストール方法
 1. リポジトリをクローン
     ```sh
-    git clone https://github.com/yourname/the-21st-century.git
-    cd the-21st-century
+    git clone https://github.com/sawatch-fisherman/toolbox-api.git
+    cd toolbox-api
     ```
-<!-- ↓未実装 -->
-<!-- 2. 環境変数を設定
-    ```sh
-    cp .env.example .env
-    ```
-3. コンテナを起動
-    ```sh
-    ./vendor/bin/sail up -d
-    ```
-4. 依存パッケージをインストール
-    ```sh
-    ./vendor/bin/sail composer install
-    ```
-5. データベースの設定
-    ```sh
-    ./vendor/bin/sail artisan migrate
-    ```
-6. アプリケーションを起動
-    ```sh
-    ./vendor/bin/sail artisan serve
-    ``` -->
+
+2. local-setup.mdの通りにセットアップ
 
 ## 使い方
   <!-- ↓未実装 -->
@@ -54,11 +35,9 @@ OpenAIドキュメント:http://localhost:8088/api/documentation
   - `develop`: 開発用
   - `feature/xxx`: 新機能開発用
 - コードフォーマット
-pint を使用（`vendor/bin/pint`）
-larastan を使用（`vendor/bin/phpstan analyse --memory-limit=1G`）
+  - pint を使用（`vendor/bin/pint`）
+  - larastan を使用（`vendor/bin/phpstan analyse --memory-limit=1G`）
 
-  <!-- ↓未実装 -->
-  <!-- - PHP-CS-Fixer を使用（`composer run fix`） -->
 - コミットメッセージのルール
   - `[feat]` 新機能追加
   - `[fix]` バグ修正
@@ -71,5 +50,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 作者
 - 作成者: sawatch-fisherman
-<!-- - 連絡先: 未定 -->
-- GitHub: [yourname](https://github.com/sawatch-fisherman)
+- GitHub: [sawatch.fisherman](https://github.com/sawatch-fisherman)

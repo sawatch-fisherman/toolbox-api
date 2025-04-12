@@ -85,7 +85,7 @@ extra_hosts:
 
 ## Xdebugの動作確認
 コンテナ内に入って、 php -m | grep xdebug でXdebugが有効になっているか確認する
-`docker exec -it the21st_app bash`  
+`docker exec -it toolbox_app bash`  
 `php -m | grep xdebug`  
 
 ## VSCodeのデバッグを開始

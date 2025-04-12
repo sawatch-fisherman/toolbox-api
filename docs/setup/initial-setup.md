@@ -2,6 +2,9 @@
 25/02/22
 
 # 概要
+本リポジトリ作成時である初回構築時の作成手順  
+※リポジトリをcloneしてきた場合は、local-setup.mdを参照
+
 docker + laravelの環境を作成する  
 dockerとlaravelのフォルダは分離する  
 親フォルダ  
@@ -11,7 +14,7 @@ dockerとlaravelのフォルダは分離する
 # 手順
 
 ## フォルダ作成
-親フォルダ(例：The21stCentury)  
+親フォルダ(例：ToolboxApi)  
 ┗app(laravel)  
 ┗docker  
 
@@ -31,7 +34,7 @@ dockerとlaravelのフォルダは分離する
 - docker/nginx/default.conf
     docker/docker-compose.ymlのappのcontainer_nameに変更する
     - 修正前：fastcgi_pass php:9000;
-    - 修正後：fastcgi_pass the21st_app:9000;
+    - 修正後：fastcgi_pass toolbox_app:9000;
 
 ### Docker をビルド・起動
 cd docker  
@@ -42,7 +45,7 @@ Docker 内の app コンテナに入って Laravel 11 をインストール
 
 ### コンテナに入る
 `docker exec -it コンテナ名 bash`  
-┗例:docker exec -it the21st_app bash
+┗例:docker exec -it toolbox_app bash
 
 ### Laravel 11 をインストール
 composer create-project laravel/laravel . "11.*"
@@ -112,7 +115,7 @@ WSL特有だが、ログファイルのアクセス権限がないとエラー�
 例：file_put_contents(/var/www/storage/framework/views/187f828346b000af3c7029fb05171792.php): Failed to open stream: Permission denied
 
 appコンテナ内で、ログファイルの権限を変更する
-`docker exec -it the21st_app bash`  
+`docker exec -it toolbox_app bash`  
 `chmod -R 777 storage`  
 
 再度、http://localhost:8088/  にアクセスするとLaravelのトップ画面が表示される
