@@ -3,11 +3,13 @@
 namespace App\Http\Requests;
 
 use App\Rules\TimeFormat;
+use App\Rules\EndTimeFormat;
 use App\Rules\BreakTimeFormat;
 use App\Services\WorkTimeCalculationService;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Symfony\Component\HttpFoundation\Response;
 
 class CalculateWorkTimeRequest extends FormRequest
 {
@@ -25,9 +27,9 @@ class CalculateWorkTimeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'start_time' => ['required', new TimeFormat()],
-            'end_time' => ['required', new TimeFormat()],
-            'break_time' => ['required', new BreakTimeFormat()],
+            'start_time' => ['required', new TimeFormat()],      // 00:00～23:59
+            'end_time' => ['required', new EndTimeFormat()],     // 00:01～48:00
+            'break_time' => ['required', new BreakTimeFormat()], // 00:00～23:59
             'rounding_unit' => ['nullable', 'integer', 'min:1', 'max:60'],
         ];
     }
@@ -87,7 +89,7 @@ class CalculateWorkTimeRequest extends FormRequest
             response()->json([
                 'message' => '入力値が正しくありません。',
                 'errors' => $validator->errors()
-            ], 422)
+            ], Response::HTTP_UNPROCESSABLE_ENTITY) // 422 Unprocessable Entity
         );
     }
 
@@ -96,7 +98,7 @@ class CalculateWorkTimeRequest extends FormRequest
      */
     protected function prepareForValidation(): void
     {
-        // 時刻データの正規化（必要に応じて）
+        // 時刻データの正規化
         $this->merge([
             'start_time' => trim($this->input('start_time', '')),
             'end_time' => trim($this->input('end_time', '')),

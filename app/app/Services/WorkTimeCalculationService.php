@@ -57,17 +57,7 @@ class WorkTimeCalculationService
         return $baseDate->setTime($hours, $minutes, 0);
     }
 
-    /**
-     * 終了時刻の48:00制限をチェック
-     */
-    private function validateEndTimeLimit(string $endTime): bool
-    {
-        $parts = explode(':', $endTime);
-        $hours = intval($parts[0]);
-        
-        // 48:00を超える場合は無効
-        return $hours <= 48;
-    }
+
 
     /**
      * 勤務時間を計算（分単位）
@@ -106,12 +96,6 @@ class WorkTimeCalculationService
     public function validateTimeLogic(string $startTime, string $endTime, string $breakTime): array
     {
         $errors = [];
-
-        // 終了時刻の48:00制限チェック
-        if (!$this->validateEndTimeLimit($endTime)) {
-            $errors[] = '終了時刻は48:00までしか設定できません。';
-            return $errors; // 制限を超えている場合は他のチェックをスキップ
-        }
 
         // 時刻をCarbonオブジェクトに変換
         $startCarbon = $this->timeStringToCarbon($startTime);
