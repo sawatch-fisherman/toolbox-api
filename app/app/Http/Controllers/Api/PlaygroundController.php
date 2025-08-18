@@ -21,10 +21,13 @@ class PlaygroundController extends Controller
      *     summary="サンプルAPI",
      *     description="これはお試し用のサンプルAPIです。",
      *     tags={"Playground"},
+     *
      *     @OA\Response(
      *         response=200,
      *         description="成功時のレスポンス",
+     *
      *         @OA\JsonContent(
+     *
      *             @OA\Property(property="message", type="string", example="This is a sample API response.")
      *         )
      *     )

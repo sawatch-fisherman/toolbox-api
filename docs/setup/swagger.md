@@ -59,7 +59,7 @@ public function sample(): JsonResponse
 `storage/api-docs/api-docs.json` が生成される
 
 ## Swagger にアクセス確認
-http://localhost:8088/api/documentation  
+http://localhost:8089/api/documentation  
 ドキュメントが表示される
 
 # darkaonline/l5-swaggerの説明

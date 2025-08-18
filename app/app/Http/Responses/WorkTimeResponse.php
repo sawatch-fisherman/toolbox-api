@@ -21,9 +21,8 @@ class WorkTimeResponse extends JsonResponse
         $data = [
             'hours' => $hours,
             'minutes' => $minutes,
-            'total_minutes' => $totalMinutes
+            'total_minutes' => $totalMinutes,
         ];
         parent::__construct($data, $status, $headers, $options);
     }
 }
-
