@@ -2,12 +2,12 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\TimeFormat;
-use App\Rules\EndTimeFormat;
 use App\Rules\BreakTimeFormat;
+use App\Rules\EndTimeFormat;
+use App\Rules\TimeFormat;
 use App\Services\WorkTimeCalculationService;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -27,9 +27,9 @@ class CalculateWorkTimeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'start_time' => ['required', new TimeFormat()],      // 00:00～23:59
-            'end_time' => ['required', new EndTimeFormat()],     // 00:01～48:00
-            'break_time' => ['required', new BreakTimeFormat()], // 00:00～23:59
+            'start_time' => ['required', new TimeFormat],      // 00:00～23:59
+            'end_time' => ['required', new EndTimeFormat],     // 00:01～48:00
+            'break_time' => ['required', new BreakTimeFormat], // 00:00～23:59
             'rounding_unit' => ['nullable', 'integer', 'min:1', 'max:60'],
         ];
     }
@@ -68,11 +68,11 @@ class CalculateWorkTimeRequest extends FormRequest
         $endTime = $this->input('end_time');
         $breakTime = $this->input('break_time');
 
-        if (!$startTime || !$endTime || !$breakTime) {
+        if (! $startTime || ! $endTime || ! $breakTime) {
             return; // 基本バリデーションでエラーになるため、ここではスキップ
         }
 
-        $service = new WorkTimeCalculationService();
+        $service = new WorkTimeCalculationService;
         $errors = $service->validateTimeLogic($startTime, $endTime, $breakTime);
 
         foreach ($errors as $error) {
@@ -88,7 +88,7 @@ class CalculateWorkTimeRequest extends FormRequest
         throw new HttpResponseException(
             response()->json([
                 'message' => '入力値が正しくありません。',
-                'errors' => $validator->errors()
+                'errors' => $validator->errors(),
             ], Response::HTTP_UNPROCESSABLE_ENTITY) // 422 Unprocessable Entity
         );
     }

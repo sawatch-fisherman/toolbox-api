@@ -27,13 +27,15 @@ toolbox api は、Laravelを使用して構築されたWebアプリケーショ�
 <!-- - ユーザー登録画面: http://localhost/register -->
 <!-- - ログイン画面: http://localhost/login -->
 <!-- - APIエンドポイント一覧は `docs/api.md` を参照 -->
-OpenAIドキュメント:http://localhost:8088/api/documentation  
+OpenAIドキュメント:http://localhost:8089/api/documentation  
 
 ## 開発ルール
 - ブランチ運用ルール
   - `main`: 本番用
   - `develop`: 開発用
   - `feature/xxx`: 新機能開発用
+  - `fix/xxx`: バグ修正用
+  - `chore/xxx`: 保守作業用
 - コードフォーマット
   - pint を使用（`vendor/bin/pint`）
   - larastan を使用（`vendor/bin/phpstan analyse --memory-limit=1G`）

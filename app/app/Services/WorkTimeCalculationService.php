@@ -31,7 +31,7 @@ class WorkTimeCalculationService
         return [
             'hours' => $hours,
             'minutes' => $minutes,
-            'total_minutes' => $workMinutes
+            'total_minutes' => $workMinutes,
         ];
     }
 
@@ -57,8 +57,6 @@ class WorkTimeCalculationService
         return $baseDate->setTime($hours, $minutes, 0);
     }
 
-
-
     /**
      * 勤務時間を計算（分単位）
      */
@@ -71,7 +69,7 @@ class WorkTimeCalculationService
 
         // 総労働時間を計算（分単位）
         $totalMinutes = $startTime->diffInMinutes($endTime);
-        
+
         // 休憩時間を分に変換
         $breakMinutes = $breakTime->hour * 60 + $breakTime->minute;
 
@@ -109,7 +107,7 @@ class WorkTimeCalculationService
 
         // 総労働時間を計算（分単位）
         $totalWorkMinutes = $startCarbon->diffInMinutes($endCarbon);
-        
+
         // 休憩時間を分に変換
         $breakMinutes = $breakCarbon->hour * 60 + $breakCarbon->minute;
 
