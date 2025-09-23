@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CalculateWorkTimeRequest;
+use App\Http\Responses\WorkTimeDecimalResponse;
 use App\Http\Responses\WorkTimeResponse;
 use App\Services\WorkTimeCalculationService;
 use Illuminate\Http\JsonResponse;
@@ -85,4 +86,66 @@ class WorkTimeController extends Controller
             ], 500);
         }
     }
+
+    /**
+     * @OA\Post(
+     *     path="/api/calculate-work-time-decimal",
+     *     summary="勤務時間計算（小数点以下2桁 例: 8.75）",
+     *     description="開始時刻、終了時刻、休憩時間から勤務時間を計算します（小数点以下2桁）",
+     *     tags={"Work Time"},
+     *
+     *     @OA\RequestBody(
+     *         required=true,
+     *
+     *         @OA\JsonContent(
+     *             required={"start_time","end_time","break_time"},
+     *
+     *             @OA\Property(property="start_time", type="string", example="09:00", description="開始時刻（HH:MM形式）"),
+     *             @OA\Property(property="end_time", type="string", example="28:00", description="終了時刻（HH:MM形式、日またぎ可）"),
+     *             @OA\Property(property="break_time", type="string", example="01:00", description="休憩時間（HH:MM形式）"),
+     *             @OA\Property(property="rounding_unit", type="integer", nullable=true, example=null, description="丸め単位（分）")
+     *         )
+     *     ),
+     *
+     *     @OA\Response(
+     *         response=200,
+     *         description="成功時のレスポンス",
+     *
+     *         @OA\JsonContent(
+     *
+     *             @OA\Property(property="hours", type="number", format="double", example=19.00, description="勤務時間（小数点以下2桁 例: 8.75）"),
+     *             @OA\Property(property="total_minutes", type="integer", example=1140, description="勤務時間の合計（分）")
+     *         )
+     *     )
+     *     ),
+     *
+     *     @OA\Response(
+     *         response=422,
+     *         description="バリデーションエラー",
+     *
+     *         @OA\JsonContent(
+     *
+     *             @OA\Property(property="message", type="string", example="The given data was invalid."),
+     *             @OA\Property(property="errors", type="object")
+     *         )
+     *     )
+     * )
+     */
+    public function calculateWorkTimeDecimal(CalculateWorkTimeRequest $request): JsonResponse
+    {
+        $validated = $request->validated();
+
+        $service = new WorkTimeCalculationService;
+        $result = $service->calculateWorkTime(
+            $validated['start_time'],
+            $validated['end_time'],
+            $validated['break_time'],
+            $validated['rounding_unit'] ?? null
+        );
+
+        $hoursDecimal = round($result['total_minutes'] / 60, 2);
+
+        return new WorkTimeDecimalResponse($hoursDecimal, $result['total_minutes']);
+    }
+
 }
