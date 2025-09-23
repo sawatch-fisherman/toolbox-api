@@ -13,3 +13,4 @@ Route::prefix('playground')->controller(PlaygroundController::class)->group(func
 
 // 勤務時間計算API
 Route::post('/calculate-work-time', [WorkTimeController::class, 'calculateWorkTime']);
+Route::post('/calculate-work-time-decimal', [WorkTimeController::class, 'calculateWorkTimeDecimal']);
